@@ -1,0 +1,68 @@
+<!--
+  List of all the parts
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <title>Part List</title>
+  </head>
+  <body>
+    <div id="wrapper">
+        <header>
+          <a href="index.html">
+            <img src="images/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
+            <img src="images/CMS_logo_col.png" width="100" height="100" alt="CMS Logo">
+          </a>
+        </header>
+        <nav>
+          <a href="partList.html">Part List</a>
+          <br>
+          <a href="testList.html">Test List</a>
+          <br>
+          <a href="newPart.html">Create New Part</a>
+          <br>
+          <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing" target="_blank">Project Google Drive</a>
+          <br>
+          <a href="contact.html">Contact/Issues</a>
+        </nav>
+        <main>
+          <h1>Part List</h1>
+          <table border="0" cellpadding="5" class="partList">
+            <tr valign="top">
+              <th>Wafer</th>
+              <th>Sensor</th>
+              <th>HDI</th>
+              <th>Bare Module</th>
+              <th>Assembled Module</th>
+            </tr>
+              <td>
+                <table border="1" id="waferList"></table>
+              </td>
+              <td>
+                <table border="1" id="sensorList"></table>
+              </td>
+              <td>
+                <table border="1" id="hdiList"></table>
+              </td>
+              <td>
+                <table border="1" id="bareModList"></table>
+              </td>
+              <td>
+                <table border="1" id="assModList"></table>
+              </td>
+            </tr>
+          </table>
+        </main>
+      </div>
+      <script src="js/partList.js" charset="utf-8"></script>
+      <script src="node_modules\jquery\dist\jquery.min.js"></script>
+      <script type="text/javascript">
+        $.ajax({
+          url: 'php/partList.php',
+          success: showParts
+        });
+      </script>
+    </body>
+  </html>
