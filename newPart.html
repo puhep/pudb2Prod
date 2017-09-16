@@ -1,0 +1,39 @@
+<!--
+  List of all the parts
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <title>New Part</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <a href="index.html">
+          <img src="images/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
+          <img src="images/CMS_logo_col.png" width="100" height="100" alt="CMS Logo">
+        </a>
+      </header>
+      <nav>
+        <a href="partList.html">Part List</a>
+        <br>
+        <a href="newPart.html">Create New Part</a>
+        <br>
+        <a href="contact.html">Contact/Issues</a>
+      </nav>
+      <main>
+        <h1>Create New Part</h1>
+        <button type="button" name="button" onclick="openWafer()" class="button-primary">Create Wafer</button>
+        <br><br>
+        <button type="button" name="button" onclick="openSensor()" class="button-primary">Create Sensor</button>
+        <br><br>
+        <button type="button" name="button" onclick="openHDI()" class="button-primary">Create HDI</button>
+        <br><br>
+        <button type="button" name="button" onclick="openModule()" class="button-primary">Create Module</button>
+      </main>
+    </div>
+    <script src="js/createPart.min.js"></script>
+  </body>
+</html>
