@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <title>Sensor Summary</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+          <a href="index.html">
+            <img src="images/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
+            <img src="images/CMS_logo_col.png" width="100" height="100" alt="CMS Logo">
+          </a>
+        </header>
+        <nav>
+          <a href="partList.html">Part List</a>
+          <br>
+          <a href="newPart.html">Create New Part</a>
+          <br>
+          <a href="contact.html">Contact/Issues</a>
+        </nav>
+        <main>
+          <h1>Sensor Summary</h1>
+          <div id="CommentRoot"></div>
+        </main>
+    </div>
+    <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="js/sensorSummary.js" charset="utf-8" type="text/jsx;harmony=true"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
+    <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+    <script type="text/jsx;harmony=true">/** @jsx React.DOM */
+       id = parent.document.URL.substring(parent.document.URL.indexOf('id=') + 3, parent.document.URL.length);
+      $.ajax({
+        url: "php/getSensorData.php?id=" + id,
+        success: renderReact,
+      });
+      function renderReact(resp){
+        JSONtoArray(resp);
+        var Comment = React.createClass({
+          getInitialState: function() {
+            return {editing: false, textVal: ''};
+          },
+          handleChange: function(evt) {
+            this.setState({textVal: evt.target.value});
+          },
+          edit: function() {
+            this.setState({editing: true});
+          },
+          cancel: function() {
+            this.setState({editing: false});
+          },
+          save: function() {
+            var val = this.state.textVal;
+            this.props.updateCommentText(val, this.props.index);
+            var field = this.props.field;
+            updatePart(id, field, val);
+            this.setState({editing: false});
+          },
+          renderNormal: function() {
+            return (
+              <div className="commentContainer">
+                <table>
+                  <tr>
+                    <td>
+                      <div className="commentText">{this.props.children}</div>
+                    </td>
+                    <td>
+                      <button onClick={this.edit} className="button-primary">Edit</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            );
+          },
+          renderForm: function() {
+            var type;
+            var step = '0.0001';
+            var min = '0';
+            switch (fieldArray[this.props.index]) {
+              case 'status':
+              case 'vendor':
+                type = 'text';
+                break;
+              case 'thickness':
+                type = 'number';
+                step = '0.00001';
+                break;
+            }
+            return (
+              <div className="commentContainer">
+                <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange} type={type} step={step} min={min}></input>
+                <br/>
+                <button onClick={this.save} className="button-save">Save</button>
+                <button onClick={this.cancel} className="button-cancel">Cancel</button>
+              </div>
+            );
+          },
+          render: function() {
+            if (this.state.editing) {
+              return this.renderForm();
+            }
+            return this.renderNormal();
+          },
+        });
+
+        var Board = React.createClass({
+          getInitialState: function() {
+            return {comments: dbArray};
+          },
+          updateComment: function(newText, i) {
+            var arr = this.state.comments;
+            arr[i] = newText;
+            this.setState({comments: arr});
+          },
+          eachComment: function(text, i) {
+            return (
+              <tr>
+                <td>{keyArray[i]}</td>
+                <td>
+                  <Comment key={i} index={i} field={fieldArray[i]} updateCommentText={this.updateComment}>
+                    {text}
+                  </Comment>
+                </td>
+              </tr>
+            );
+          },
+          render: function() {
+            return (
+              <div className="board">
+                <table cellPadding="5">
+                  <tr>
+                    <td>Last Edit</td>
+                    <td>{dbJSON.lastEdit}</td>
+                  </tr>
+                  <tr>
+                    <td>Object Type</td>
+                    <td>Sensor</td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>{dbJSON.name}</td>
+                  </tr>
+                </table>
+              </div>
+            );
+          }
+        });
+
+        React.renderComponent(
+          <Board />,
+          document.getElementById('CommentRoot')
+        );
+      };
+    </script>
+  </body>
+</html>
