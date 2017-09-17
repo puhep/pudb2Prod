@@ -8,11 +8,11 @@
   $result = $result[0];
 
   $return = new stdClass;
-  $return->name = $result['name'];
-  $return->status = $result['status'];
-  $return->vendor = $result['vendor'];
+  $return->name      = $result['name'];
+  $return->status    = $result['status'];
+  $return->vendor    = $result['vendor'];
   $return->thickness = $result['thickness'];
-  $return->lastEdit = $result['lastEdit'];
+  $return->lastEdit  = $result['lastEdit'];
 
   $json = json_encode($return);
   echo $json;
