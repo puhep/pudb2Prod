@@ -4,7 +4,7 @@ require_once("database.php");
 ### displays a list of files associated with a part as downloadable links
 ### generalizable to any part type
 function show_files($part_type, $part_id){
-  $dir = "../phase_2/files/".$part_type."/".$part_id;
+  $dir = "../phase_2_prod_prod/files/".$part_type."/".$part_id;
   if(!file_exists($dir)) {
   	echo "No files found <br>";
   } else {
@@ -22,7 +22,7 @@ function show_files($part_type, $part_id){
 ### show all pictures with their associated comments for a part in a table
 ### generalizable for any part type
 function show_pictures($part_type, $part_id){
-    $dir = "../phase_2/pics/".$part_type."/".$part_id."/";
+    $dir = "../phase_2_prod_prod/pics/".$part_type."/".$part_id."/";
     if(!file_exists($dir)){
 		  echo "No pictures found <br>";
 		  return;
@@ -113,7 +113,7 @@ function show_sensors($data, $edit=0, $type="sensor"){
 }
 
 function addTempVsTimeFile($type, $id, $file) {
-  $directory = "../phase_2/files/$type/$id/";
+  $directory = "../phase_2_prod_prod/files/$type/$id/";
   $targetFile = $directory.$file['name'];
   $fileType = pathinfo($targetFile,PATHINFO_EXTENSION);
   if($fileType != "csv") {
@@ -131,7 +131,7 @@ function addTempVsTimeFile($type, $id, $file) {
 }
 
 function addSheetThicknessContour($id, $file) {
-  $directory = "../phase_2/files/sheet/$id/";
+  $directory = "../phase_2_prod_prod/files/sheet/$id/";
   if (!file_exists($directory)) {
     mkdir($directory);
     chmod($directory, 0777);
@@ -148,7 +148,7 @@ function addSheetThicknessContour($id, $file) {
 }
 
 function addSheetBowContour($id, $file) {
-  $directory = "../phase_2/files/sheet/$id/";
+  $directory = "../phase_2_prod_prod/files/sheet/$id/";
   if (!file_exists($directory)) {
     mkdir($directory);
     chmod($directory, 0777);
@@ -165,7 +165,7 @@ function addSheetBowContour($id, $file) {
 }
 
 function add_file($type,$id,$files) {
-  $targetDir = "../phase_2/files/$type/$id/";
+  $targetDir = "../phase_2_prod_prod/files/$type/$id/";
   ### if the directory for the structure does not exist, create it and make it editable
   if (!file_exists($targetDir)) {
     mkdir($targetDir);
@@ -181,7 +181,7 @@ function add_file($type,$id,$files) {
 
 function add_pic($type,$id,$files,$notes){
     $picupload=1;
-    $targetdir = "../phase_2/pics/$type/$id/";
+    $targetdir = "../phase_2_prod_prod/pics/$type/$id/";
     $targetfile = $targetdir.$files['pic']['name'];
     $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
     ### if the directory for the test does not exist, create it and make it editable
