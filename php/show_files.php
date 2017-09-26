@@ -16,10 +16,11 @@
       }
     }
   }
-  $dir = "../../phase_2_prod/pics/".$part_type."/".$part_id."/";
+  $dir = "../../phase_2_prod/images/".$part_type."/".$part_id."/";
   $picStr = "";
+
   if(!file_exists($dir)) {
-    $picStr = "No pictures found <br>";
+    $picStr = "<p>No pictures found</p>";
   } elseif (file_exists($dir) && ($handle = opendir($dir))) {
     $picStr = "<table border=1>";
     while(false !== ($entry=(readdir($handle)))) {

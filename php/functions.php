@@ -31,7 +31,7 @@ function show_files(/*$part_type, $part_id*/) {
 ### show all pictures with their associated comments for a part in a table
 ### generalizable for any part type
 function show_pictures($part_type, $part_id) {
-  $dir = "../phase_2_prod/pics/".$part_type."/".$part_id."/";
+  $dir = "../phase_2_prod/images/".$part_type."/".$part_id."/";
   $HTMLstr = "";
   if(!file_exists($dir)) {
     $HTMLstr = "No pictures found <br>";
@@ -190,7 +190,7 @@ function add_file($type,$id,$files) {
 
 function add_pic($type,$id,$files,$notes) {
     $picupload=1;
-    $targetdir = "../phase_2_prod/pics/$type/$id/";
+    $targetdir = "../../phase_2_prod/images/$type/$id/";
     $targetfile = $targetdir.$files['pic']['name'];
     $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
     ### if the directory for the test does not exist, create it and make it editable
