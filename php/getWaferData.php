@@ -7,12 +7,16 @@
   $result = $db->db_query($sql);
   $result = $result[0];
 
+  $sql = "SELECT id, name FROM sensor WHERE fromWafer=$id";
+  $resp = $db->db_query($sql);
+
   $return = new stdClass;
   $return->name      = $result['name'];
   $return->status    = $result['status'];
   $return->vendor    = $result['vendor'];
   $return->thickness = $result['thickness'];
   $return->lastEdit  = $result['lastEdit'];
+  $return->sensors   = $resp;
 
   $json = json_encode($return);
   echo $json;

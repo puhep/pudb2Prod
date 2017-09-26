@@ -22,11 +22,17 @@
         </nav>
         <main>
           <h1>Wafer Summary</h1>
+          <div id="sensor">
+            <h3>Comprised of:</h3>
+          </div>
+          <br>
+          <h2>Wafer Info</h2>
           <div id="CommentRoot"></div>
           <h2>Pictures</h2>
           <div id="pics"></div>
           <h2>Files</h2>
           <div id="files"></div>
+          <button type="button" name="button" onclick="edit()">Edit</button>
         </main>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
@@ -161,11 +167,17 @@
           <Board />,
           document.getElementById('CommentRoot')
         );
+
+        // Display Sensor info
+        displaySensors(dbJSON);
       };
       function displayFiles(resp) {
         fileData = JSON.parse(resp);
         document.getElementById('files').innerHTML = fileData.fileStr;
         document.getElementById('pics').innerHTML = fileData.picStr;
+      }
+      function edit() {
+        window.location = "waferEdit.html?id=" + id;
       }
     </script>
   </body>

@@ -44,5 +44,11 @@ function updatePart(id, field, val) {
   $.ajax({
     url: 'php/updatePart.php?id=' + id + '&partType=wafer&field=lastEdit&value=' + time,
   });
+}
 
+function displaySensors(data) {
+  var sens = document.getElementById('sensor');
+  for (var i = 0; i < data.sensors.length; i++) {
+    sens.innerHTML += "<a href=\"sensorSummary.html?id=" + data.sensors[i].id + "\">" + data.sensors[i].name + "</a>";
+  }
 }

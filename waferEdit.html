@@ -34,7 +34,35 @@
             <input id="formVendor" type="text" name="vendor" style="float:right"><br><br>
             <label for="thickness">Thickness</label>
             <input id="formThickness" type="number" name="thickness" min="0" step="0.0001" style="float:right"><br><br>
+            <input id="formId" type="hidden" name="id">
+            <input id="formLastEdit" type="hidden" name="lastEdit">
           </div>
+          <!-- <h2>Notes</h2>
+          This is were the current notes will be displayed
+          <div style="width:400px">
+            This is were the the users can add more notes
+            <label for="notes">Additional Notes: </label>
+            <textarea cols="40" rows="5" name="notes"></textarea>
+            <br>
+          </div> -->
+          <h2>Pictures</h2>
+          <div style="width:475px">
+            <label for="pic">Picture File</label>
+            <input name="pic" type="file" style="float:right">
+            <br><br>
+          </div>
+          <div style="width:400px;">
+            <label for="picnotes">Picture Notes</label>
+            <input name="picnotes" type="text" style="float:right"><br><br>
+          </div>
+
+          <h2>Misc Files</h2>
+          <div style="width:475px">
+            <label for="files[]">Misc File(s)</label>
+            <input name="files[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
+          </div>
+          <br>
+          <input class="button-save" type="submit" name="submit" value="Submit">
         </form>
       </main>
     </div>
@@ -52,9 +80,24 @@
         document.getElementById('formStatus').placeholder = dbJSON.status;
         document.getElementById('formVendor').placeholder = dbJSON.vendor;
         document.getElementById('formThickness').placeholder = dbJSON.thickness;
+        document.getElementById('formId').value = id;
+        document.getElementById('formLastEdit').value = getTime();
       }
       function waferSummary() {
         window.location = "waferSummary.html?id=" + id;
+      }
+      function getTime() {
+        var time = new Date();
+        var h = time.getHours();
+        var m = time.getMinutes();
+        var s = time.getSeconds();
+        var dd = time.getDate();
+        var mm = time.getMonth() + 1;
+        var yyyy = time.getFullYear();
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        time = mm + '-' + dd + '-' + yyyy + ' ' + h + ':' + m + ':' + s;
+        return time;
       }
     </script>
   </body>
