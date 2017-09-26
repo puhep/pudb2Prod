@@ -7,6 +7,18 @@ var dbArray; // Array made of select values from dbJSON
 var keyArray; // Array to hold the key that matches the dbArray
 function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
+
+  dbArray = [
+    
+  ];
+
+  keyArray = [
+
+  ];
+
+  fieldArray = [
+
+  ];
 }
 
 function updatePart(id, field, val) {
@@ -26,5 +38,19 @@ function updatePart(id, field, val) {
   $.ajax({
     url: 'php/updatePart.php?id=' + id + '&partType=sensor&field=lastEdit&value=' + time,
   });
+}
 
+function displayWafer(data) {
+  var waferStr = "<a href=\"waferSummary.html?id=" + data.fromWafer + "\">" + data.waferName + "</a>";
+  document.getElementById('wafer').innerHTML = document.getElementById('wafer').innerHTML + waferStr;
+  // document.getElementById('possWaf').innerHTML = createFromWaferString(data);
+}
+
+function createFromWaferString (data) {
+  console.log(data);
+  var waferStr = "";
+  for (var i = 0; i < data.possibleWafers.length; i++) {
+    waferStr += "<option value=\"" + data.possibleWafers[0].id+ "\">" + data.possibleWafers[i].name + "</option>"
+  }
+  return waferStr;
 }
