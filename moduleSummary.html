@@ -21,23 +21,33 @@
           <a href="contact.html">Contact/Issues</a>
         </nav>
         <main>
-          <h1>Bare Module Summary</h1>
+          <h1>Module Summary</h1>
+          <div id="sensor">
+            <h3>From Sensor:</h3>
+          </div>
+          <br>
+          <div id="HDI">
+            <h3>From HDI:</h3>
+          </div>
+          <br>
+          <h2>Module Info</h2>
           <div id="CommentRoot"></div>
           <h2>Pictures</h2>
           <div id="pics"></div>
           <h2>Files</h2>
           <div id="files"></div>
+          <button type="button" name="button" onclick="edit()" class="button-save">Edit</button>
         </main>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script src="js/bareModSummary.js" charset="utf-8" type="text/jsx;harmony=true"></script>
+    <script src="js/moduleSummary.js" charset="utf-8" type="text/jsx;harmony=true"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
     <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
     <script type="text/jsx;harmony=true" async>/** @jsx React.DOM */
        id = parent.document.URL.substring(parent.document.URL.indexOf('id=') + 3, parent.document.URL.length);
       $.ajax({   // Gets the data
-        url: "php/getBareModData.php?id=" + id,
+        url: "php/getModuleData.php?id=" + id,
         success: renderReact,
       });
       $.ajax({   // Gets the files and pictures
@@ -87,13 +97,11 @@
             var step = '0.0001';
             var min = '0';
             switch (fieldArray[this.props.index]) {
+              case 'flipChipBonder':
+              case 'currentLocation':
               case 'status':
-              case 'vendor':
+              case 'processedAt':
                 type = 'text';
-                break;
-              case 'thickness':
-                type = 'number';
-                step = '0.00001';
                 break;
             }
             return (
@@ -135,6 +143,12 @@
             );
           },
           render: function() {
+            var type = "Module";
+            if (dbJSON.isAssembled == "true") {
+              type = "Assembled Module";
+            } else if (dbJSON.isAssembled == "false") {
+              type = "Bare Module";
+            }
             return (
               <div className="board">
                 <table cellPadding="5">
@@ -144,7 +158,7 @@
                   </tr>
                   <tr>
                     <td>Object Type</td>
-                    <td>Bare Module</td>
+                    <td>{type}</td>
                   </tr>
                   <tr>
                     <td>Name</td>
@@ -161,11 +175,18 @@
           <Board />,
           document.getElementById('CommentRoot')
         );
+        displaySensor(dbJSON);
+        displayHDI(dbJSON);
       };
+
       function displayFiles(resp) {
         fileData = JSON.parse(resp);
         document.getElementById('files').innerHTML = fileData.fileStr;
         document.getElementById('pics').innerHTML = fileData.picStr;
+      }
+
+      function edit() {
+        window.location = "moduleEdit.html?id=" + id;
       }
     </script>
   </body>
