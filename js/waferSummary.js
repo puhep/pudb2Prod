@@ -47,6 +47,7 @@ function updatePart(id, field, val) {
 }
 
 function displaySensors(data) {
+  if (data.sensors == null || data.sensors.length == 0) return;
   var sens = document.getElementById('sensor');
   for (var i = 0; i < data.sensors.length; i++) {
     sens.innerHTML += "<a href=\"sensorSummary.html?id=" + data.sensors[i].id + "\">" + data.sensors[i].name + "</a>";
