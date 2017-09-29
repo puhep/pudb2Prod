@@ -4,8 +4,8 @@
   $wafer   = $db->db_query("SELECT id, name FROM wafer");
   $sensor  = $db->db_query("SELECT id, name FROM sensor");
   $hdi     = $db->db_query("SELECT id, name FROM hdi");
-  $bareMod = $db->db_query("SELECT id, name FROM bareModule");
-  $assMod  = $db->db_query("SELECT id, name FROM assembledModule");
+  $bareMod = $db->db_query("SELECT id, name FROM module WHERE isAssembled=\"false\"");
+  $assMod  = $db->db_query("SELECT id, name FROM module WHERE isAssembled=\"true\"");
 
   $return = new stdClass;
   $return->wafer   = $wafer;

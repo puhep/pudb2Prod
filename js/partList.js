@@ -27,7 +27,7 @@ function showParts(resp) {
 
   var bareModHTML = "";
   for (var i = 0; i < data.bareMod.length; i++) {
-    bareModHTML += "<tr><td><a href=\"bareModuleSummary.html?id=" + data.bareMod[i].id + "\">" + data.bareMod[i].name + "</a></td></tr>";
+    bareModHTML += "<tr><td><a href=\"moduleSummary.html?id=" + data.bareMod[i].id + "\">" + data.bareMod[i].name + "</a></td></tr>";
   }
   if (bareModHTML != "" && bareModHTML != null) {
     document.getElementById("bareModList").innerHTML = bareModHTML;
@@ -35,7 +35,7 @@ function showParts(resp) {
 
   var assModHTML = "";
   for (var i = 0; i < data.assMod.length; i++) {
-    assModHTML += "<tr><td><a href=\"assembledModuleSummary.html?id=" + data.assMod[i].id + "\">" + data.assMod[i].name + "</a></td></tr>";
+    assModHTML += "<tr><td><a href=\"moduleSummary.html?id=" + data.assMod[i].id + "\">" + data.assMod[i].name + "</a></td></tr>";
   }
   if (assModHTML != "" && assModHTML != null) {
     document.getElementById("assModList").innerHTML = assModHTML;
