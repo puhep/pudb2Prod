@@ -9,7 +9,7 @@ function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
 
   dbArray = [
-    
+
   ];
 
   keyArray = [
@@ -41,13 +41,18 @@ function updatePart(id, field, val) {
 }
 
 function displayWafer(data) {
+  if (data.fromWafer == null || data.waferName == null) return;
   var waferStr = "<a href=\"waferSummary.html?id=" + data.fromWafer + "\">" + data.waferName + "</a>";
   document.getElementById('wafer').innerHTML = document.getElementById('wafer').innerHTML + waferStr;
-  // document.getElementById('possWaf').innerHTML = createFromWaferString(data);
+}
+
+function displayModule(data) {
+  if (data.module == null || data.module.name == "" || data.module.name == null || data.module.id == "" || data.module.id == null) return;
+  var moduleStr = "<a href=\"moduleSummary.html?id=" + data.module.id + "\">" + data.module.name + "</a>";
+  document.getElementById('module').innerHTML = document.getElementById('module').innerHTML + moduleStr;
 }
 
 function createFromWaferString (data) {
-  console.log(data);
   var waferStr = "";
   for (var i = 0; i < data.possibleWafers.length; i++) {
     waferStr += "<option value=\"" + data.possibleWafers[0].id+ "\">" + data.possibleWafers[i].name + "</option>"

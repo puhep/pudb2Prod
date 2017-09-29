@@ -26,16 +26,16 @@
             <h3>From Wafer:</h3>
           </div>
           <br>
-          <!-- <div id="module">
-            <h3>On Module</h3>
-          </div> -->
+          <div id="module">
+            <h3>On Module:</h3>
+          </div>
           <h2>Sensor Info</h2>
           <div id="CommentRoot"></div>
           <h2>Pictures</h2>
           <div id="pics"></div>
           <h2>Files</h2>
           <div id="files"></div>
-          <button type="button" name="button" onclick="edit()">Edit</button>
+          <button type="button" name="button" onclick="edit()" class="button-save">Edit</button>
         </main>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
@@ -165,6 +165,7 @@
           document.getElementById('CommentRoot')
         );
         displayWafer(dbJSON);
+        displayModule(dbJSON);
       };
       function displayFiles(resp) {
         fileData = JSON.parse(resp);

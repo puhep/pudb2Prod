@@ -22,12 +22,16 @@
   $sql     = "SELECT id, name FROM wafer";
   $possWaf = $db->db_query($sql);
 
+  $sql = "SELECT id, name FROM module WHERE fromSensor=$id";
+  $module = $db->db_query($sql);
+
   $return = new stdClass;
   $return->name           = $result['name'];
   $return->lastEdit       = $result['lastEdit'];
-  $return->fromWasfer     = $result['fromWafer'];
+  $return->fromWafer     = $result['fromWafer'];
   $return->waferName      = $waferName;
   $return->possibleWafers = $possWaf;
+  $return->module         = $module[0];
 
   $json = json_encode($return);
   echo $json;
