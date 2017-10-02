@@ -22,15 +22,20 @@
         </nav>
         <main>
           <h1>HDI Summary</h1>
+          <div id="module">
+            <h3>On Module:</h3>
+          </div>
+          <h2>HDI Info</h2>
           <div id="CommentRoot"></div>
           <h2>Pictures</h2>
           <div id="pics"></div>
           <h2>Files</h2>
           <div id="files"></div>
+          <button type="button" name="button" onclick="edit()" class="button-save">Edit</button>
         </main>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script src="js/hdiSummary.js" charset="utf-8" type="text/jsx;harmony=true"></script>
+    <script src="js/hdiSummary.js" charset="utf-8"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
     <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
@@ -157,11 +162,15 @@
           <Board />,
           document.getElementById('CommentRoot')
         );
+        displayModule(dbJSON);
       };
       function displayFiles(resp) {
         fileData = JSON.parse(resp);
         document.getElementById('files').innerHTML = fileData.fileStr;
         document.getElementById('pics').innerHTML = fileData.picStr;
+      }
+      function edit() {
+        window.location = "hdiEdit.html?id=" + id;
       }
     </script>
   </body>

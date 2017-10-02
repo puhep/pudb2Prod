@@ -41,5 +41,11 @@ function updatePart(id, field, val) {
   $.ajax({
     url: 'php/updatePart.php?id=' + id + '&partType=hdi&field=lastEdit&value=' + time,
   });
+}
 
+function displayModule(data) {
+  console.log(data);
+  if (data.module == null || data.module.name == "" || data.module.name == null || data.module.id == "" || data.module.id == null) return;
+  var moduleStr = "<a href=\"moduleSummary.html?id=" + data.module.id + "\">" + data.module.name + "</a>";
+  document.getElementById('module').innerHTML = document.getElementById('module').innerHTML + moduleStr;
 }
