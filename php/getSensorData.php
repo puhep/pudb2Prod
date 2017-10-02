@@ -22,7 +22,7 @@
   $sql     = "SELECT id, name FROM wafer";
   $possWaf = $db->db_query($sql);
 
-  $sql = "SELECT id, name FROM module WHERE fromSensor=$id";
+  $sql    = "SELECT id, name FROM module WHERE fromSensor=$id";
   $module = $db->db_query($sql);
 
   $return = new stdClass;
