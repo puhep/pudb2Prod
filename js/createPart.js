@@ -13,3 +13,7 @@ function openWafer() {
 function openModule() {
   window.location = "newModule.html";
 }
+
+function openMiscPart() {
+  window.location = "newMiscPart.html";
+}

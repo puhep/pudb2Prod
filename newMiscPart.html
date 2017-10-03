@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>new Misc Part</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <a href="index.php">
+          <img src="images/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
+          <img src="images/CMS_logo_col.png" width="100" height="100" alt="CMS Logo">
+        </a>
+      </header>
+      <nav>
+        <a href="partList.html">Part List</a>
+        <br>
+        <a href="newPart.html">Create New Part</a>
+        <br>
+        <a href="contact.html">Contact/Issues</a>
+      </nav>
+      <main>
+        <h1>New Misc Part</h1>
+        <form action="php/newMiscPart.php" method="post" enctype="multipart/form-data">
+          <div style="width:400px">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" style="float:right">
+            <br><br>
+            <label for="currentLocation">Current Location</label>
+            <input type="text" name="currentLocation" style="float:right">
+            <br><br>
+            <label for="prodLocation">Produced Location</label>
+            <input type="text" name="prodLocation" style="float:right">
+            <br><br>
+          </div>
+          <h2>Notes</h2>
+          <div style="width:400px">
+            <label for="notes">Additional Notes:</label>
+            <textarea name="notes" rows="5" cols="40"></textarea>
+            <br>
+          </div>
+          <h2>Pictures</h2>
+          <div style="width:475px">
+            <label for="pic">Picture File:</label>
+            <input type="file" name="pic" style="float:right">
+            <br><br>
+          </div>
+          <div style="width:475px">
+            <label for="files[]">Misc File(s):</label>
+            <input type="file" name="files[]" id="files" multiple="multiple" style="float:right">
+            <br><br>
+          </div>
+          <input class="button" type="submit" name="submit" value="Submit">
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
