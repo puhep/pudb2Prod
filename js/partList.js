@@ -54,12 +54,10 @@ function showParts(resp) {
   var miscPartHTML = "";
   if (data.miscPart !== null) {
     for (var i = 0; i < data.miscPart.length; i++) {
-      miscPartHTML += "<tr><td><a href=\"miscPartSummary.html?id=" + data.miscPart[i].id + "\">" + data.miscPart[i] + "</a></td></tr>";
+      miscPartHTML += "<tr><td><a href=\"miscPartSummary.html?id=" + data.miscPart[i].id + "\">" + data.miscPart[i].name + "</a></td></tr>";
     }
   }
   if (miscPartHTML !== "" && miscPartHTML !== null) {
     document.getElementById('miscPartList').innerHTML = miscPartHTML;
   }
-  if (data.miscPart !== "hello") console.log('hello');
-  if (data.miscPart == null) console.log('world');
 }
