@@ -61,5 +61,5 @@
   }
 
   ### redirect to the summary page with the new information
-  header("Location: ../moduleSummary.html?id=$id")
+  header("Location: ../moduleSummary.html?id=$id");
 ?>
