@@ -1,5 +1,5 @@
 /*******************************************
-* Calls converts bare module JSON to an array
+* Calls converts module JSON to an array
 *******************************************/
 
 var dbJSON; // JSON object that holds all the values from the database
