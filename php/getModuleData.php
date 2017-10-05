@@ -13,6 +13,9 @@
   $sql        = "SELECT id, name FROM sensor";
   $possSensor =  $db->db_query($sql);
 
+  $sql   = "SELECT notetext FROM notes WHERE part_id=$id and part_type=\"module\"";
+  $notes = $db->db_query($sql);
+
   $sensorName = "";
   if ($result['fromSensor'] != "") {
     $sql = "SELECT name FROM sensor WHERE id =".$result['fromSensor'];
@@ -41,6 +44,7 @@
   $return->possibleSensor  = $possSensor;
   $return->hdiName         = $hdiName;
   $return->sensorName      = $sensorName;
+  $return->notes           = $notes;
 
   $json = json_encode($return);
   echo $json;
