@@ -28,15 +28,19 @@
           <br>
           <h2>Wafer Info</h2>
           <div id="CommentRoot"></div>
+          <h2>Notes</h2>
+          <div id="notes"></div>
           <h2>Pictures</h2>
           <div id="pics"></div>
           <h2>Files</h2>
           <div id="files"></div>
+          <br>
           <button type="button" name="button" onclick="edit()" class="button-save">Edit</button>
         </main>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="js/waferSummary.js" charset="utf-8" type="text/jsx;harmony=true"></script>
+    <script src="js/partFunctions.js" charset="utf-8"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
     <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
@@ -167,15 +171,13 @@
           <Board />,
           document.getElementById('CommentRoot')
         );
-
+        // Print notes
+        if (dbJSON.notes === null) document.getElementById('notes').innerHTML = "<p>No notes found</p>";
+        else printNotes(dbJSON.notes[0].notetext);
         // Display Sensor info
         displaySensors(dbJSON);
       };
-      function displayFiles(resp) {
-        fileData = JSON.parse(resp);
-        document.getElementById('files').innerHTML = fileData.fileStr;
-        document.getElementById('pics').innerHTML = fileData.picStr;
-      }
+
       function edit() {
         window.location = "waferEdit.html?id=" + id;
       }
