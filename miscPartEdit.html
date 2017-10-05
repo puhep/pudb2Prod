@@ -66,6 +66,7 @@
       </main>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="js/partFunctions.js" charset="utf-8"></script>
     <script type="text/javascript">
       var id = parent.document.URL.substring(parent.document.URL.indexOf('id=') + 3, parent.document.URL.length);
       $.ajax({
@@ -85,20 +86,6 @@
 
       function miscPartSummary() {
         window.location = "miscPartSummary.html?id=" + id;
-      }
-
-      function getTime() {
-        var time = new Date();
-        var h = time.getHours();
-        var m = time.getMinutes();
-        var s = time.getSeconds();
-        var dd = time.getDate();
-        var mm = time.getMonth() + 1;
-        var yyyy = time.getFullYear();
-        if (dd < 10) dd = '0' + dd;
-        if (mm < 10) mm = '0' + mm;
-        time = mm + '-' + dd + '-' + yyyy + ' ' + h + ':' + m + ':' + s;
-        return time;
       }
     </script>
   </body>
