@@ -25,13 +25,17 @@
   $sql    = "SELECT id, name FROM module WHERE fromSensor=$id";
   $module = $db->db_query($sql);
 
+  $sql   = "SELECT notetext FROM notes WHERE part_id=$id and part_type=\"sensor\"";
+  $notes = $db->db_query($sql);
+
   $return = new stdClass;
   $return->name           = $result['name'];
   $return->lastEdit       = $result['lastEdit'];
-  $return->fromWafer     = $result['fromWafer'];
+  $return->fromWafer      = $result['fromWafer'];
   $return->waferName      = $waferName;
   $return->possibleWafers = $possWaf;
   $return->module         = $module[0];
+  $return->notes          = $notes;
 
   $json = json_encode($return);
   echo $json;

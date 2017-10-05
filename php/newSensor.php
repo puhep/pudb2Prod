@@ -8,12 +8,12 @@
   $db->query($sql);
   $db->singleRecord();
   $id = $db->Record['MAX(id)'];
-  $sql = "INSERT INTO notes (part_type,part_id) VALUES (\"sheet\",$id)";
+  $sql = "INSERT INTO notes (part_type,part_id) VALUES (\"sensor\",$id)";
   $db->query($sql);
 
   ### this concatenates existing notes, if any, with a new line including the date and the entered note text
   if ($_POST['notes'] != ""){
-      $sql = "UPDATE notes SET notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') WHERE part_id=$id AND part_type=\"sheet\"";
+      $sql = "UPDATE notes SET notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') WHERE part_id=$id AND part_type=\"sensor\"";
       $db -> query($sql);
   }
 
