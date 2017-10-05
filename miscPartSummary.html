@@ -24,6 +24,8 @@
         <h1>Misc Part Summary</h1>
         <h2>Misc Part Info</h2>
         <div id="CommentRoot"></div>
+        <h2>Notes</h2>
+        <div id="notes"></div>
         <h2>Pictures</h2>
         <div id="pics"></div>
         <h2>Files</h2>
@@ -159,17 +161,27 @@
           <Board />,
           document.getElementById('CommentRoot')
         );
+        printNotes(dbJSON.notes[0].notetext);
       };
 
       function displayFiles(resp) {
         fileData = JSON.parse(resp);
-        console.log(fileData);
         document.getElementById('files').innerHTML = fileData.fileStr;
         document.getElementById('pics').innerHTML  = fileData.picStr;
       }
 
       function edit() {
         window.location = "miscPartEdit.html?id=" + id;
+      }
+
+      function printNotes(notes) {
+        var temp = notes;
+        var notesDOM = document.getElementById('notes');
+        if (notes == "" || notes == null) notesDOM.innerHTML = "<p>No notes found</p>"
+        while (temp != "" && temp.indexOf("\n") != -1) {
+          notesDOM.innerHTML = notesDOM.innerHTML + "<p>" +temp.substring(0, temp.indexOf("\n")) + "</p>";
+          temp = temp.substring(temp.indexOf("\n") + 1);
+        }
       }
     </script>
   </body>

@@ -27,7 +27,7 @@
   if ($_POST['notes'] != "") {
     $sql = "UPDATE notes SET notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') WHERE part_id=$id AND part_type=\"miscPart\"";
     // echo $sql;
-    // $db -> query($sql);
+    $db->query($sql);
   }
 
   // If the name of the picture is not blank (i.e. a picture has been slotted to upload), perform several checks and upload
