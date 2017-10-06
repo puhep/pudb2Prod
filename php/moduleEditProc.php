@@ -33,6 +33,11 @@
     $db->query($sql);
   }
 
+  if ($_POST['isAssembled'] != "") {
+    $sql = "UPDATE module SET isAssembled=\"".$_POST['isAssembled']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+
   if ($_POST['fromSensor'] != "" && $_POST['fromSensor'] != "none") {
     $sql = "UPDATE module SET fromSensor=\"".$_POST['fromSensor']."\" WHERE id=$id";
     $db->query($sql);
