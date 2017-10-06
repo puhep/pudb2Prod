@@ -54,7 +54,7 @@
         success: renderReact,
       });
       $.ajax({   // Gets the files and pictures
-        url: "php/show_files.php?partType=wafer&id=" + id,
+        url: "php/show_files.php?partType=module&id=" + id,
         success: displayFiles
       });
       function renderReact(resp){

@@ -32,7 +32,7 @@
         $txt = $dir."/".substr($entry,0,-3)."txt";
         if(file_exists($txt)) {
           $fp = fopen($txt, 'r');
-          $picStr = $picStr + nl2br(fread($fp, filesize($txt)));
+          $picStr = $picStr . nl2br(fread($fp, filesize($txt)));
           fclose($fp);
         }
         #echo "picture text here";

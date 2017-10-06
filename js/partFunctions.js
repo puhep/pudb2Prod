@@ -19,7 +19,6 @@ function displayFiles(resp) {
 }
 
 function printNotes(notes) {
-  console.log(notes);
   var temp = notes;
   var notesDOM = document.getElementById('notes');
   if (notes == "" || notes == null) notesDOM.innerHTML = "<p>No notes found</p>";
